@@ -9,10 +9,10 @@
                 <img src="~@/assets/header.jpg" alt="">
             </div>
             <div class="chat-catalog-item chat-icon-session"
-                 :class="{active:catalogIndex==0}"
+                 :class="{active:mainStore.catalogIndex==0}"
                  @click="switchCatalog(0,'session')"></div>
             <div class="chat-catalog-item chat-icon-group"
-                 :class="{active:catalogIndex==1}"
+                 :class="{active:mainStore.catalogIndex==1}"
                  @click="switchCatalog(1,'group')"></div>
         </div>
         <div class="chat-content">
@@ -22,14 +22,20 @@
 </template>
 
 <script>
-    // import { ipcRenderer } from 'electron';
-    const {ipcRenderer} = require('electron');
+    import { ipcRenderer } from 'electron';
+    import {mapState, mapActions} from 'vuex';
+
     export default {
         name: 'main-view',
         data() {
             return {
                 catalogIndex: 0
             }
+        },
+        computed:{
+            ...mapState({
+                mainStore: state => state.mainStore,
+            })
         },
         mounted() {
             // var _ol = document.getElementById("content");
@@ -46,7 +52,10 @@
         },
         methods: {
             switchCatalog(caIndex,caPath){
-                this.catalogIndex=caIndex;
+                this.$store.commit({
+                    type:'SWITCH_CATALOG',
+                    index:caIndex
+                });
                 this.$router.push(caPath);
             }
             // autoUpdate() {

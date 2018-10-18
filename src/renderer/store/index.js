@@ -1,11 +1,24 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import modules from './modules'
+import mainStore from './state_modules/main'
+import sessionStore from './state_modules/session';
+import groupStore from './state_modules/group';
+
+import actions from './actions';
+import mutations from './mutations';
 
 Vue.use(Vuex);
 
+const state = {
+    mainStore,
+    sessionStore,
+    groupStore
+};
+
 export default new Vuex.Store({
-  modules,
-  strict: process.env.NODE_ENV !== 'production'
+    state,
+    mutations,
+    actions,
+    strict: process.env.NODE_ENV !== 'production'
 })

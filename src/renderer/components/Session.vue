@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="session-content-input-textarea">
-                    <textarea>3452</textarea>
+                    <textarea ref="textContent">3452</textarea>
                 </div>
                 <div class="session-content-input-hand">
                     <button>立即发送</button>
@@ -91,16 +91,31 @@
 </template>
 
 <script>
-    import emoji from '@/chat_modules/emoji.js';
+    import emoji from '@/chat_modules/emoji';
+    import utils from '@/chat_modules/utils';
     export default {
         name: "session",
         data(){
             return {
-                isEmoji:true,
+                isEmoji:false,
                 emoji:emoji
 
             }
-        }
+        },
+        created(){
+
+        },
+        mounted(){
+
+        },
+        methods:{
+            selectEmoji(e) {
+                // console.log(this.$refs['textContent']);
+                utils.insertAfterText(this.$refs['textContent'], e);
+                // this.content = this.$refs['textContent'].value;
+                // this.content+=e;
+            },//选择表情
+        },
     }
 </script>
 
