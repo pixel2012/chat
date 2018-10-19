@@ -1,10 +1,12 @@
+import emoji from '@/chat_modules/emoji';
+
 class Session {
     constructor() {
-        this.userId = store.get('userId');
-        this.userName = store.get('nickName');
-        this.userHeader = store.get('headUrl');
-        this.chatCategory = store.get('chatCategory') || 0;//大类；0是聊天组，1是用户组
-        this.chatIndex = store.get('chatIndex') || 0;//当前聊天主体索引
+        this.userId = '';
+        this.userName = '';
+        this.userHeader = '';
+        this.chatCategory = 0;//大类；0是聊天组，1是用户组
+        this.chatIndex = 0;//当前聊天主体索引
         this.chatUsers = [
             // {
             //     fromUserId: 'e373ff47b6954f54b4458257ff9423ae',
@@ -44,8 +46,7 @@ class Session {
             desc: [
                 {required: true, message: '请填写会员描述信息', trigger: 'blur'}
             ]
-        }
-        ;
+        };
         this.isMenuList = false;//是否显示菜单
         this.x = 0;//菜单X坐标
         this.y = 0;//菜单Y坐标

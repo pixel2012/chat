@@ -91,6 +91,7 @@
 </template>
 
 <script>
+    import {localStore} from '@/chat_modules/store';
     import emoji from '@/chat_modules/emoji';
     import utils from '@/chat_modules/utils';
     export default {
